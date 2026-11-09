@@ -2,98 +2,75 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KatalogMobilny.NewProductPage"
-             Title="NewProductPage">
-    <!--
-    <VerticalStackLayout Spacing="8" Padding="20">
-        <Label 
-            Text="Nowy produkt"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"/>
-        <Label Text="Nazwa"    />
-        <Entry x:Name="NazwaEntry" Placeholder="Wpisz nazwę produktu"/>
-        <Label Text="Cena"    />
-        <Entry x:Name="CenaEntry" Placeholder="0" Keyboard="Numeric"/>
-        <Label Text="Kategoria"    />
-        <Picker x:Name="KategoriaPicker">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Procesory</x:String>
-                    <x:String>Płyty główne</x:String>
-                    <x:String>Karty graficzne</x:String>
-                    <x:String>Dyski SSD</x:String>
-                    <x:String>Pamięci RAM</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <HorizontalStackLayout>
-            <Switch x:Name="AvailableSwitch" />
-            <Label Text="Produkt dostępny" VerticalOptions="Center"/>
-        </HorizontalStackLayout>
-        <Button Text="Dodaj produkt" MinimumHeightRequest="48" MaximumHeightRequest="56"/>
-    </VerticalStackLayout>
-    -->
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label 
-            Grid.Row="0"
-            Grid.ColumnSpan="2"
-            Text="Nowy produkt"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"  />
-        <Label 
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Text="Nazwa"    />
-        <Entry 
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            x:Name="NazwaEntry" 
-            Placeholder="Wpisz nazwę produktu"  />
-        <Label 
-            Grid.Row="3"
-            Grid.ColumnSpan="2"
-            Text="Cena"    />
-        <Entry 
-            Grid.Row="4"
-            Grid.ColumnSpan="2"
-            x:Name="CenaEntry" 
-            Placeholder="0" 
-            Keyboard="Numeric"/>
-        <Label Grid.Row="5"
-               Grid.ColumnSpan="2"
-               Text="Kategoria" />
-        <Picker Grid.Row="6" Grid.ColumnSpan="2" x:Name="KategoriaPicker">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Procesory</x:String>
-                    <x:String>Płyty główne</x:String>
-                    <x:String>Karty graficzne</x:String>
-                    <x:String>Dyski SSD</x:String>
-                    <x:String>Pamięci RAM</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-        <Switch x:Name="AvailableSwitch" Grid.Row="7" Grid.Column="0"/>
-        <Label Text="Produkt dostępny" VerticalOptions="Center" Grid.Row="7" Grid.Column="1"/>
-        <Button Grid.Row="9" Grid.Column="0" Text="Dodaj produkt" MinimumHeightRequest="48" MaximumHeightRequest="56" Clicked="NowyProdukt_Clicked"/>
-        <Button Grid.Row="9" Grid.Column="1" Text="Powrót" MinimumHeightRequest="48" MaximumHeightRequest="56"/>
-        <Label Grid.Row="10" Grid.Column="0" x:Name="EtykietaWyniku2" Text=""/>
+             Title="Nowy produkt">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+            <Label Text="Nowy produkt"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
-    </Grid>
+            <Label Text="Nazwa produktu" FontAttributes="Bold" />
+            <Entry x:Name="NazwaEntry"
+                   Placeholder="Wpisz nazwę produktu"
+                   ClearButtonVisibility="WhileEditing"
+                   MinimumHeightRequest="52" />
+
+            <Label Text="Cena (zł)" FontAttributes="Bold" />
+            <Entry x:Name="CenaEntry"
+                   Placeholder="np. 899,99"
+                   Keyboard="Numeric"
+                   ClearButtonVisibility="WhileEditing"
+                   MinimumHeightRequest="52" />
+
+            <Label Text="Ilość" FontAttributes="Bold" />
+            <Entry x:Name="IloscEntry"
+                   Placeholder="np. 2"
+                   Keyboard="Numeric"
+                   ClearButtonVisibility="WhileEditing"
+                   MinimumHeightRequest="52" />
+
+            <Label Text="Kategoria" FontAttributes="Bold" />
+            <Picker x:Name="KategoriaPicker"
+                    Title="Wybierz kategorię"
+                    MinimumHeightRequest="52">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Procesory</x:String>
+                        <x:String>Płyty główne</x:String>
+                        <x:String>Karty graficzne</x:String>
+                        <x:String>Dyski SSD</x:String>
+                        <x:String>Pamięci RAM</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                <Switch x:Name="AvailableSwitch"
+                        MinimumHeightRequest="44"
+                        MinimumWidthRequest="52"
+                        Toggled="AvailableSwitch_Toggled" />
+                <Label x:Name="AvailableLabel"
+                       Text="Produkt niedostępny"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
+                <Button Grid.Column="0"
+                        Text="Dodaj produkt"
+                        MinimumHeightRequest="52"
+                        Clicked="NowyProdukt_Clicked" />
+                <Button Grid.Column="1"
+                        Text="Resetuj formularz"
+                        MinimumHeightRequest="52"
+                        Clicked="Reset_Clicked" />
+            </Grid>
+
+            <Border Padding="12" MinimumHeightRequest="70">
+                <Label x:Name="EtykietaWyniku"
+                       Text="Wypełnij formularz i wybierz „Dodaj produkt”."
+                       LineBreakMode="WordWrap" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

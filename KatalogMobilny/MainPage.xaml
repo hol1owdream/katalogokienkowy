@@ -1,58 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!-- content page może mieć tylko 1 potomka -->
-    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KatalogMobilny.MainPage">
-        <!--Całość zamykamy w znaczniku grid-->
+    <!-- całość zamykamy w znaczniku grid -->
     <Grid>
-        <!--definuijemy ile jest wierszy i kolumn-->
+        <!-- definiujemy ile jest wierszy i kolumn -->
         <Grid.RowDefinitions>
-            <!--dodajemy sobie wiersz na guziki z kategoriami we flex layout-->
-            <RowDefinition Height="auto"/>
-            <!-- Zdecydowaliśmy na 5 wierszów -->
-            <!-- Auto znaczy, że wysokoć będzie ustawiana automatycznie -->
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <!-- dodajemy sobie wiersz na guziki z kategorami we flexlayout -->
+            <RowDefinition Height="Auto" />
+            <!-- poprawiamy wszedzie row +1 -->
+            <!-- zdecydowaliśmy się na 5 wierszy -->
+            <!-- auto oznacza tyle ile musisz zeby zmieścić zawartość -->
+            <RowDefinition Height="Auto" />
+            <!-- * oznacza, że wiersz zajmie pozostałą dostępną przestrzeń -->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <!-- Zdecydowaliśmy na 2 kolumny -->
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <!-- zdecydowaliśmy się na 2 kolumny identycznej szerokości -->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <!--<Po definicjach możemy umieszczac elementy w gridzie-->
-        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text=" Processor" FontSize="24" FontAutoScalingEnabled="True" FontFamily="verdana" HorizontalOptions="Center" Margin="0,20"/>
-        <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Source="processor.png" HorizontalOptions="Center"/>
-        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="cena: 899zł" TextColor="Grey" HorizontalOptions="Center"/>
-        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="EtykietaWyniku" Text="Nic nie wybrano"  HorizontalOptions="Center" Margin="0,20,0,5"/>
-        <Button Grid.Row="5" Grid.Column="0" Text="Wybierz" Clicked="PokazButton" BackgroundColor="#FF9639"/>
-        <Button Grid.Row="5" Grid.Column="1" Text="Ukryj" Clicked="UkryjButton" BackgroundColor="#FF9639"/>
-        <!-- Można ten pierwszy wiersz dopisać nawt na końcu, pod warunkiem że dam prawidłowo row -->
-        <!-- Wrap zawija jak zabraknie miejsca -->
-        <FlexLayout Grid.Row="0" Grid.Column="2" Wrap="Wrap" JustifyContent="Start" Padding="10">
-            <Button Text="Procesory" BackgroundColor="#FF9639"/>
-            <Button Text="Płyty główne" BackgroundColor="#FF9639"/>
-            <Button Text="Karty graficzne" BackgroundColor="#FF9639"/>
-            <Button Text="Dyski SSD" BackgroundColor="#FF9639"/>
-            <Button Text="Pamięci RAM" BackgroundColor="#FF9639"/>
+        <!-- po definicjach wierszy i kolumn możemy umieszczać elementy w gridzie -->
+        <!-- labelka w pierwszym wierszu i pierwszej kolumnie, zajmuje dwie kolumny -->
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Procesor" FontSize="12" FontAttributes="Bold" 
+            TextColor="#008BFF" HorizontalOptions="Center" Margin="0,20"/>
+        <!-- obrazek analogicznie drugi wiersz, zajmie dwie kolumny-->
+        <Image Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+               Source="processor.png" Aspect="AspectFit" />
+        <!-- labelka znowu na całą szerokość ale w trzecim wierszu -->
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+               Text="Cena: 899 zł" TextColor="Gray" />
+        <!-- labelka z wynikiem skryptu -->
+        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                x:Name="EtykietaWyniku" Text="Nic nie wybrano" />
+        <!-- UWAGA: zamiast horizontalstacklayout możemy użyć grid -->
+        <Button Grid.Row="5" Grid.Column="0" Text="Pokaż" Clicked="PokazButton"/>
+        <Button Grid.Row="5" Grid.Column="1" Text="Ukryj" Clicked="UkryjButton"/>
+        <!-- mogę sobie dopisać ten pierwszy wiersz nawet na końcu pod warunkiem, że dam prawidłowy indeks -->
+        <!-- wrap zawija jak zabraknie miejsca, justifycontent start wyrównuje do lewej, padding daje margines wewnętrzny -->
+        <FlexLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Wrap="Wrap" JustifyContent="Start" Padding="10">
+            <Button Text="Procesory" />
+            <Button Text="Płyty główne" />
+            <Button Text="Karty graficzne" />
+            <Button Text="Dyski SSD" />
+            <Button Text="Pamięci RAM" />
         </FlexLayout>
     </Grid>
     <!--
-    
     <VerticalStackLayout Padding="16" x:Name="MainLayout">
-            <Label Text=" Processor" FontSize="24" FontAutoScalingEnabled="True" FontFamily="verdana" HorizontalOptions="Center" Margin="0,20"/>
-            <Image Source="processor.png" HorizontalOptions="Center"/>
-            <Label Text="cache: 40MB" TextColor="Grey" HorizontalOptions="Center"/>
-            <Label Text="grafika: AMD Radeon™ Graphics" TextColor="Grey" HorizontalOptions="Center"/>
-            <Label Text="cena: 899zł" TextColor="Grey" HorizontalOptions="Center"/>
-            <Label x:Name="EtykietaWyniku" Text="Nic nie wybrano"  HorizontalOptions="Center" Margin="0,20,0,5"/>
-        <HorizontalStackLayout Spacing="50">
-            <Button Text="Wybierz" Clicked="PokazButton" BackgroundColor="#FF9639"/>
-            <Button Text="Ukryj" Clicked="UkryjButton" BackgroundColor="#FF9639"/>
+        <Label Text="Procesor" FontSize="12" FontAttributes="Bold" 
+               TextColor="#008BFF" HorizontalOptions="Center" Margin="0,20"/>
+        <Image Source="procesor.jpg" Aspect="AspectFit" />
+        <Label Text="Cena: 899 zł" TextColor="Gray" />
+        
+        <Label x:Name="EtykietaWyniku" Text="Nic nie wybrano" />
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Pokaż" Clicked="PokazClicked"/>
+            <Button Text="Ukryj"/>
         </HorizontalStackLayout>
+        
     </VerticalStackLayout>
+    
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
@@ -64,29 +75,14 @@
                 SemanticProperties.Description="dot net bot in a submarine number ten" />
 
             <Label
+                x:Name="EtykietaPowitania"
                 Text="Witaj w katalogu"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="64" />
-
-            <Label
-                x:Name="Kliknieto"
-                Text="Kliknięto 0 razy"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1"
                 FontSize="24" />
 
             <Button
                 x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" BackgroundColor="{StaticResource Primary}"/>
-            <Image
-                Source="cat.jpg"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a submarine number ten" />
+                Text="Kliknij mnie" 
+                Clicked="CounterBtn_Clicked" />
         </VerticalStackLayout>
     </ScrollView>
 -->
