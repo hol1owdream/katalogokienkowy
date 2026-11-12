@@ -39,7 +39,7 @@ public partial class NewProductPage : ContentPage
         }
 
         var wartosc = cena * ilosc;
-        var dostepnosc = AvailableSwitch.IsToggled ? "dostępny" : "niedostępny";
+        var dostepnosc = DostepnoscSwitch.IsToggled ? "dostępny" : "niedostępny";
         PokazKomunikat($"Produkt: {nazwa}\nCena: {cena:0.00} zł\nIlość: {ilosc}\n" +
                        $"Kategoria: {kategoria}\nWartość: {wartosc:0.00} zł\nStatus: {dostepnosc}");
     }
@@ -50,14 +50,14 @@ public partial class NewProductPage : ContentPage
         CenaEntry.Text = string.Empty;
         IloscEntry.Text = string.Empty;
         KategoriaPicker.SelectedItem = null;
-        AvailableSwitch.IsToggled = false;
-        AvailableLabel.Text = "Produkt niedostępny";
+        DostepnoscSwitch.IsToggled = false;
+        DostepnoscLabel.Text = "Produkt niedostępny";
         PokazKomunikat("Formularz został wyczyszczony.");
     }
 
-    private void AvailableSwitch_Toggled(object sender, ToggledEventArgs e)
+    private void DostepnoscSwitch_Toggled(object sender, ToggledEventArgs e)
     {
-        AvailableLabel.Text = e.Value ? "Produkt dostępny" : "Produkt niedostępny";
+        DostepnoscLabel.Text = e.Value ? "Produkt dostępny" : "Produkt niedostępny";
     }
 
     private static bool TryParseCena(string? tekst, out decimal cena)

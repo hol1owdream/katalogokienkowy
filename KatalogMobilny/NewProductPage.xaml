@@ -3,34 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KatalogMobilny.NewProductPage"
              Title="Nowy produkt">
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="12">
-            <Label Text="Nowy produkt"
+    <ScrollView x:Name="FormularzScrollView">
+        <VerticalStackLayout x:Name="FormularzLayout" Padding="20" Spacing="12">
+            <Label x:Name="TytulLabel"
+                   Text="Nowy produkt"
                    FontSize="26"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
 
-            <Label Text="Nazwa produktu" FontAttributes="Bold" />
+            <Label x:Name="NazwaLabel" Text="Nazwa produktu" FontAttributes="Bold" />
             <Entry x:Name="NazwaEntry"
                    Placeholder="Wpisz nazwę produktu"
                    ClearButtonVisibility="WhileEditing"
                    MinimumHeightRequest="52" />
 
-            <Label Text="Cena (zł)" FontAttributes="Bold" />
+            <Label x:Name="CenaLabel" Text="Cena (zł)" FontAttributes="Bold" />
             <Entry x:Name="CenaEntry"
                    Placeholder="np. 899,99"
                    Keyboard="Numeric"
                    ClearButtonVisibility="WhileEditing"
                    MinimumHeightRequest="52" />
 
-            <Label Text="Ilość" FontAttributes="Bold" />
+            <Label x:Name="IloscLabel" Text="Ilość" FontAttributes="Bold" />
             <Entry x:Name="IloscEntry"
                    Placeholder="np. 2"
                    Keyboard="Numeric"
                    ClearButtonVisibility="WhileEditing"
                    MinimumHeightRequest="52" />
 
-            <Label Text="Kategoria" FontAttributes="Bold" />
+            <Label x:Name="KategoriaLabel" Text="Kategoria" FontAttributes="Bold" />
             <Picker x:Name="KategoriaPicker"
                     Title="Wybierz kategorię"
                     MinimumHeightRequest="52">
@@ -45,32 +46,34 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
-                <Switch x:Name="AvailableSwitch"
+            <HorizontalStackLayout x:Name="DostepnoscLayout" Spacing="12" VerticalOptions="Center">
+                <Switch x:Name="DostepnoscSwitch"
                         MinimumHeightRequest="44"
                         MinimumWidthRequest="52"
-                        Toggled="AvailableSwitch_Toggled" />
-                <Label x:Name="AvailableLabel"
+                        Toggled="DostepnoscSwitch_Toggled" />
+                <Label x:Name="DostepnoscLabel"
                        Text="Produkt niedostępny"
                        VerticalOptions="Center" />
             </HorizontalStackLayout>
 
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
-                <Button Grid.Column="0"
+            <Grid x:Name="AkcjeGrid" Margin="0,8,0,0">
+                <Button
+                        x:Name="DodajProduktButton"
                         Text="Dodaj produkt"
                         MinimumHeightRequest="52"
                         Clicked="NowyProdukt_Clicked" />
-                <Button Grid.Column="1"
-                        Text="Resetuj formularz"
-                        MinimumHeightRequest="52"
-                        Clicked="Reset_Clicked" />
             </Grid>
 
-            <Border Padding="12" MinimumHeightRequest="70">
+            <Border x:Name="WynikBorder" Padding="12" MinimumHeightRequest="70">
                 <Label x:Name="EtykietaWyniku"
                        Text="Wypełnij formularz i wybierz „Dodaj produkt”."
                        LineBreakMode="WordWrap" />
             </Border>
+
+            <Button x:Name="ResetujFormularzButton"
+                    Text="Resetuj formularz"
+                    MinimumHeightRequest="52"
+                    Clicked="Reset_Clicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
